@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Test } from './components/Test'
+import { E } from '../e/src/ui/components/e'
 </script>
 
 <template>
@@ -7,6 +8,7 @@ import { Test } from './components/Test'
    Plop component
   </h1>
   <Test />
+  <E />
 </template>
 
 <style scoped>

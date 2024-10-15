@@ -1,65 +1,45 @@
 <script setup lang="ts">
     import {
-      {{#if state }} ref {{/if}}
-      {{#if computed }} computed {{/if}}
-      {{#if watch }} watch {{/if}}
+       ref 
+       computed 
+       watch 
     } from 'vue';
 
-  {{#if props }}
     defineProps<{ 
       propValue: string;
     }>();
-  {{/if}}
 
-  {{#if state }}
     const exampleStr = ref('This is a state example');
-  {{/if}}
 
-  {{#if computed }}
     const computedValue = computed(() => {
       return 'This is a computed value';
     });
-  {{/if}}
 
-  {{#if actions }}
     function exampleAction() {
       alert('Action executed');
     }
-  {{/if}}
 
-  {{#if events }}
     defineEmits(['exampleEvent']);
-  {{/if}}
 
-  {{#if watch }}
     watch(exampleStr, (newVal) => {
       console.log('exampleStr changed:', newVal);
     });
-  {{/if}}
 </script>
 
 <template>
-  <div class="{{kebabCase name}}">
-    {{#if state }}
-      <p>{{ exampleStr }}</p>
-    {{/if}}
+  <div class="test-module-cmp">
+      <p></p>
 
-    {{#if computed }}
-      <p>{{ computedValue }}</p>
-    {{/if}}
+      <p></p>
 
-    {{#if props }}
-      <p>Prop Value: {{ propValue }}</p>
-    {{/if}}
+      <p>Prop Value: </p>
 
-    {{#if actions }}
       <button @click="exampleAction">Click me</button>
-    {{/if}}
   </div>
 </template>
 
 <style scoped lang="scss">
-  .{{kebabCase name}} {
+  .test-module-cmp {
     /* Component-specific styles */
   }
 </style>
