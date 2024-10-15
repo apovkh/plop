@@ -2,15 +2,16 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import autocompletePrompt from 'inquirer-autocomplete-prompt';
+// @ts-ignore nex-line
+import { NodePlopAPI, Answers } from 'plop';
 
-// Get the current directory from the module URL
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default function (plop) {
+
+export default function (plop: NodePlopAPI) {
   const modulesPath = path.join(__dirname, 'modules');
 
-  // Ensure that the modules directory exists
   if (!fs.existsSync(modulesPath)) {
     console.error(`Modules directory does not exist at path: ${modulesPath}`);
     process.exit(1);
@@ -32,7 +33,6 @@ export default function (plop) {
         source: (_, input) => {
           input = input || '';
           return new Promise((resolve) => {
-            // Add an option to create a new module
             const filteredModules = moduleDirectories.filter(module =>
               module.toLowerCase().includes(input.toLowerCase())
             );
@@ -40,20 +40,20 @@ export default function (plop) {
             resolve([...filteredModules, 'Create a new module']);
           });
         },
-        validate: (value) => (value ? true : 'Module selection is required.')
+        validate: (value) => (value ? true : 'Module selection is required.'),
       },
       {
         type: 'input',
         name: 'newModuleName',
         message: 'Enter the new module name (PascalCase):',
         when: (answers) => answers.module === 'Create a new module',
-        validate: (value) => value ? true : 'Module name is required.'
+        validate: (value) => (value ? true : 'Module name is required.'),
       },
       {
         type: 'input',
         name: 'name',
         message: 'Component name (PascalCase):',
-        validate: (value) => value ? true : 'Component name must be in PascalCase.'
+        validate: (value) => (value ? true : 'Component name must be in PascalCase.'),
       },
       {
         type: 'checkbox',
@@ -74,17 +74,15 @@ export default function (plop) {
         },
       },
     ],
-    actions: (data) => {
+    actions: (data: Answers | undefined) => {
       if (!data.confirmCreation) {
         return [];
       }
 
-      // Determine the module name
-      const moduleName = data.module === 'Create a new module' ? data.newModuleName : data.module;
+      const moduleName = data.module === 'Create a new module' ? data.newModuleName! : data.module; 
       const name = '{{pascalCase name}}';
       const componentFolder = `modules/${moduleName}/src/ui/components/${name}`;
 
-      // Create the new module directory if it doesn't exist
       const newModulePath = path.join(modulesPath, moduleName);
       if (data.module === 'Create a new module' && !fs.existsSync(newModulePath)) {
         fs.mkdirSync(newModulePath, { recursive: true });
@@ -102,7 +100,7 @@ export default function (plop) {
             computed: data.features.includes('computed'),
             actions: data.features.includes('actions'),
             events: data.features.includes('events'),
-            watch: data.features.includes('watch')
+            watch: data.features.includes('watch'),
           },
         },
         {
@@ -125,7 +123,7 @@ export default function (plop) {
           path: `${componentFolder}/i18n.ts`,
           templateFile: './plop-templates/i18n.ts.hbs',
           data: { name: name },
-        }
+        },
       ];
     },
   });
