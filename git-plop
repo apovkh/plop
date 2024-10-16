@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "Working dir"
+workdir="$(pwd)"
+echo "$workdir"
+
+docker run -it --rm -v "$workdir:/app" node:22.6.0 bash -c "cd /app && npm install && npx tsc && node dist/plopfile.js"

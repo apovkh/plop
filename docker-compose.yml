@@ -1,0 +1,8 @@
+version: '3.3'
+
+services:
+  plop:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    command: tail -f /dev/null

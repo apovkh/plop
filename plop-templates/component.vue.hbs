@@ -1,41 +1,41 @@
 <script setup lang="ts">
-    import {
-      {{#if state }} ref {{/if}}
-      {{#if computed }} computed {{/if}}
-      {{#if watch }} watch {{/if}}
-    } from 'vue';
+  import {
+    {{#if state }} ref, {{/if}}
+    {{#if computed }} computed, {{/if}}
+    {{#if watch }} watch {{/if}}
+  } from 'vue';
 
-  {{#if props }}
-    defineProps<{ 
-      propValue: string;
-    }>();
-  {{/if}}
+{{#if props }}
+  defineProps<{ 
+    propValue: string;
+  }>();
+{{/if}}
 
-  {{#if state }}
-    const exampleStr = ref('This is a state example');
-  {{/if}}
+{{#if state }}
+  const exampleStr = ref('This is a state example');
+{{/if}}
 
-  {{#if computed }}
-    const computedValue = computed(() => {
-      return 'This is a computed value';
-    });
-  {{/if}}
+{{#if computed }}
+  const computedValue = computed(() => {
+    return 'This is a computed value';
+  });
+{{/if}}
 
-  {{#if actions }}
-    function exampleAction() {
-      alert('Action executed');
-    }
-  {{/if}}
+{{#if actions }}
+  function exampleAction() {
+    alert('Action executed');
+  }
+{{/if}}
 
-  {{#if events }}
-    defineEmits(['exampleEvent']);
-  {{/if}}
+{{#if events }}
+  defineEmits(['exampleEvent']);
+{{/if}}
 
-  {{#if watch }}
-    watch(exampleStr, (newVal) => {
-      console.log('exampleStr changed:', newVal);
-    });
-  {{/if}}
+{{#if watch }}
+  watch(exampleStr, (newVal) => {
+    console.log('exampleStr changed:', newVal);
+  });
+{{/if}}
 </script>
 
 <template>

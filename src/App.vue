@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { Test } from './components/Test'
-import { E } from '../e/src/ui/components/e'
+import { TestModuleCmp } from '../modules/TestModule/src/ui/components/TestModuleCmp'
 </script>
 
 <template>
   <h1>
    Plop component
   </h1>
-  <Test />
-  <E />
+  <TestModuleCmp />
 </template>
 
 <style scoped>
