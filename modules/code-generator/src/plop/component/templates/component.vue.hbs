@@ -1,0 +1,68 @@
+<script setup lang="ts">
+import {
+{{#if state }} ref, {{/if}}
+{{#if computed }} computed, {{/if}}
+{{#if watch }} watch, {{/if}}
+  onMounted
+} from 'vue';
+
+{{#if props }}
+defineProps<{ 
+  counter: number;
+}>();
+{{/if}}
+
+{{#if state }}
+const counter = ref(0);
+{{/if}}
+
+{{#if computed }}
+const doubleCounter = computed(() => counter.value * 2);
+{{/if}}
+
+{{#if actions }}
+function increment() {
+  counter.value++;
+}
+{{/if}}
+
+{{#if events }}
+defineEmits(['incremented']);
+{{/if}}
+
+{{#if watch }}
+watch(counter, (newVal) => {
+  console.log('Counter changed to:', newVal);
+});
+{{/if}}
+
+onMounted(() => {
+  // Fetch API data here
+});
+</script>
+
+<template>
+  <div class="{{kebabCase name}}">
+    {{#if props }}
+      <p>{{ counter }}</p>
+    {{/if}}
+
+    {{#if state }}
+      <p>Reactive counter: {{ counter }}</p>
+    {{/if}}
+
+    {{#if computed }}
+      <p>Computed double counter: {{ doubleCounter }}</p>
+    {{/if}}
+
+    {{#if actions }}
+      <button @click="increment">Increment</button>
+    {{/if}}
+  </div>
+</template>
+
+<style scoped lang="scss">
+  .{{kebabCase name}} {
+    /* Component-specific styles */
+  }
+</style>

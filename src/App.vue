@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Test } from './components/Test'
-import { E } from '../e/src/ui/components/e'
+// import { generatorComponent } from '../modules/code-generator/src/plop'
+// console.log(generatorComponent());
+
 </script>
 
 <template>
@@ -8,7 +10,6 @@ import { E } from '../e/src/ui/components/e'
    Plop component
   </h1>
   <Test />
-  <E />
 </template>
 
 <style scoped>

@@ -1,0 +1,1 @@
+export { generatorHelper } from './plop-generator.ts'
