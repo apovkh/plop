@@ -1,0 +1,60 @@
+import { defineProps, ref, computed, watch, onMounted } from 'vue';
+
+import { useI18nManager } from '@lk-framework/src/stores/util-i18n-manager';
+
+import type {
+  {{pascalCase componentName}}Props
+  {{pascalCase componentName}}Emits
+} from './{{pascalCase componentName}}.types.ts';
+
+
+export const use{{pascalCase componentName}}Consts = () => {
+  const defaultProps = {
+    // you defaults here
+  };
+
+  return { defaultProps };
+};
+
+export const use{{pascalCase componentName}} = <Props extends {{pascalCase componentName}}Props>(
+    props?: Props,
+    emits?: {{pascalCase componentName}}Emits,
+) => {
+  const i18nManager = useI18nManager();
+
+  const currentLocaleCode: string = i18nManager.currentLocaleCode;
+  const addLanguageSlug = (path: string) => {
+    if (i18nManager.isMultilingual) return `/${currentLocaleCode}${path}`
+
+    return path;
+  };
+
+  const variableRef = ref<string>('example ref')
+  const variableReactive = ref<{ 
+    exampleKey: string 
+  }>({ 
+    exampleKey: 'example value'
+  })
+
+  const exampleComputed = computed<string>(() => 'example computed')
+
+  const exampleAction = (): void => {
+    const count = 1 
+    console.log('example action')
+    emits('emit-name', count)
+  }
+
+  onMounted(() => {
+    console.log('mounted')
+  })
+
+  return {
+    variableRef,
+    variableReactive,
+
+    exampleComputed,
+    exampleAction,
+
+    addLanguageSlug
+  }
+}

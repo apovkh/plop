@@ -1,0 +1,35 @@
+{{!-- script to avoid passing the attribute directly from the outside --}}
+<script lang="ts">
+  export default { inheritAttrs: false }
+</script>
+
+<script setup lang="ts">
+import { 
+  use{{pascalCase componentName}}, 
+  use{{pascalCase componentName}}Consts
+} from './{{pascalCase componentName}}.setup.ts';
+
+import type { 
+  {{pascalCase componentName}}Props, 
+  {{pascalCase componentName}}Emits 
+} from './{{pascalCase componentName}}.types.ts';
+
+const props = withDefaults(
+  defineProps<{{pascalCase componentName}}Props>(), 
+  use{{pascalCase componentName}}Consts().defaultProps
+);
+
+const emits = defineEmits<{{pascalCase componentName}}Emits>();
+
+const { 
+  variableRef,
+  variableReactive,
+  exampleComputed,
+  exampleAction
+} = use{{pascalCase componentName}}(props, emits);
+</script>
+
+
+<template>
+...
+</template>

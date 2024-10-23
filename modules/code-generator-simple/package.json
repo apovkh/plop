@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "plop": "cross-env NODE_OPTIONS='--import tsx' plop --plopfile=plopfile.ts"
+  }
+}

@@ -1,5 +1,14 @@
 {
-  "scripts": {
-    "plop": "cross-env NODE_OPTIONS='--import tsx' plop --plopfile=plopfile.ts"
+  "name": "lenderkit-portal-code-generator",
+  "version": "0.0.0",
+  "description": "This module code generator for the LenderKit Investment Portal.",
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:lenderkit-dev/portal-code-generator.git"
+  },
+  "author": "LenderKit",
+  "config": {
+    "alias": "code-generator",
+    "type": "other"
   }
 }

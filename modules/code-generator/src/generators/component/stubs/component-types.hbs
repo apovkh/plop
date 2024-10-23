@@ -1,0 +1,13 @@
+
+export interface {{pascalCase componentName}}Props {
+  primitiveVar?: string; // optional prop
+  objectVar: {
+      // required prop
+      fruit: string;
+  };
+}
+
+export interface {{pascalCase componentName}}Emits {
+  eventA: [id: string];
+  eventB: [payload: { foo: string; bar: number }];
+}
